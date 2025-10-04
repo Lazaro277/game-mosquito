@@ -9,14 +9,14 @@ function selecionaNivel(nivel) {
     if (nivel === 'normal') {
         console.log('nivel normal')
         normal.style.border = '5px solid black'
-        iniciarJogo.href = '../normal.html'
+        iniciarJogo.href = 'normal.html'
     } else if (nivel === 'dificil') {
         console.log('nivel dificil')
         dificil.style.border = '5px solid black'
-        iniciarJogo.href = '../dificil.html'
+        iniciarJogo.href = 'dificil.html'
     } else if (nivel === 'chuckNorris') {
         console.log('nivel chuckNorris')
         chuckNorris.style.border = '5px solid black'
-        iniciarJogo.href = '../chuckNorris.html'
+        iniciarJogo.href = 'chuckNorris.html'
     }
 }
