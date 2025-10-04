@@ -8,6 +8,7 @@ body {
     background-size: cover;
     cursor: url('../img/mata_mosca.png'), pointer;
     overflow: hidden;
+    height: 100vh;
 }
 
 a {
@@ -26,11 +27,29 @@ a {
 }
 
 #jogo {
-    height: 100vh;
+    height: 92vh;
     width: 100%;
+    margin-top: 67px;
     position: relative;
 }
 
 #imagemMosca {
     position: absolute;
+}
+
+
+
+@media (max-width: 576px) {
+
+    #game {
+        width: 400px;
+    }
+
+    #imgvitoria {
+        width: 400px;
+    }
+
+    #imgGameOver {
+        width: 400px;
+    }
 }
