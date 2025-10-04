@@ -33,16 +33,16 @@ var contPontos = function contarPontos() {
     pontos--;
     console.log('perdeu ponto');
     if (pontos === 2) {
-        coracao1.src = '../img/coracao_vazio.png'
+        coracao1.src = 'img/coracao_vazio.png'
     } else if (pontos === 1) {
-        coracao1.src = '../img/coracao_vazio.png'
-        coracao2.src = '../img/coracao_vazio.png'
+        coracao1.src = 'img/coracao_vazio.png'
+        coracao2.src = 'img/coracao_vazio.png'
     } else if (pontos === 0) {
-        coracao1.src = '../img/coracao_vazio.png'
-        coracao2.src = '../img/coracao_vazio.png'
-        coracao3.src = '../img/coracao_vazio.png'
+        coracao1.src = 'img/coracao_vazio.png'
+        coracao2.src = 'img/coracao_vazio.png'
+        coracao3.src = 'img/coracao_vazio.png'
     } else if (pontos === -1) {
-        window.location.href = "../game_over.html"
+        window.location.href = "game_over.html"
     }
 }
 setInterval(contPontos, 500);
@@ -55,7 +55,7 @@ setInterval(function contagemRegressiva() {
     contagem--
     document.getElementById('contagemRegressiva').innerHTML = contagem
     if (contagem === 0) {
-        window.location.href = '../vitoria.html'
+        window.location.href = 'vitoria.html'
     }
 }, 1000)
 

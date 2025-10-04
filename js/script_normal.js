@@ -40,7 +40,7 @@ var contPontos = function contarPontos() {
     } else if (pontos === 0) {
         coracao1.src = 'img/coracao_vazio.png'
         coracao2.src = 'img/coracao_vazio.png'
-        coracao3.src = 'coracao_vazio.png'
+        coracao3.src = 'img/coracao_vazio.png'
     } else if (pontos === -1) {
         window.location.href = "game_over.html"
     }
