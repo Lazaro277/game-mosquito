@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: url(../img/bg.jpg) no-repeat center top;
+    background-size: cover;
+    cursor: url('../img/mata_mosca.png'), pointer;
+    overflow: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+#cliqueMosca,
+#imagemMosca {
+    cursor: url('../img/mata_mosca.png') 10 10, pointer;
+}
+
+
+#nivelJogo {
+    width: 250px;
+}
+
+#jogo {
+    height: 100vh;
+    width: 100%;
+    position: relative;
+}
+
+#imagemMosca {
+    position: absolute;
+}
