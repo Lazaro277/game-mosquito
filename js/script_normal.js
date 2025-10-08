@@ -29,6 +29,7 @@ function gerarPosicaoAleatoria() {
     const randomPx = Math.random() * (max - min) + min;
     mosca.style.width = `${randomPx}px`;
 
+    // Faz com que a imagem aparece de lados aleatórios
     var lado = Math.floor(Math.random() * 2);
     console.log(lado)
     switch (lado) {
@@ -65,7 +66,9 @@ var contPontos = function contarPontos() {
         window.location.href = "game_over.html"
     }
 }
+
 setInterval(contPontos, 1500);
+
 function pontuacao() {
     pontos++;
     console.log('ganhou ponto')
