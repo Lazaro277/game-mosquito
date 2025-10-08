@@ -22,6 +22,11 @@ function gerarPosicaoAleatoria() {
     // Aplica as novas posições à imagem
     mosca.style.left = `${randomX}px`;
     mosca.style.top = `${randomY}px`;
+
+    var min = 50;
+    var max = 90;
+    const randomPx = Math.random() * (max - min) + min;
+    mosca.style.width = `${randomPx}px`;
 }
 
 var coracao1 = document.getElementById('coracao1')

@@ -22,6 +22,12 @@ function gerarPosicaoAleatoria() {
     // Aplica as novas posições à imagem
     mosca.style.left = `${randomX}px`;
     mosca.style.top = `${randomY}px`;
+
+    var min = 30;
+    var max = 70;
+
+    const randomPx = Math.random() * (max - min) + min;
+    mosca.style.width = `${randomPx}px`;
 }
 
 var coracao1 = document.getElementById('coracao1')
@@ -45,7 +51,7 @@ var contPontos = function contarPontos() {
         window.location.href = "game_over.html"
     }
 }
-setInterval(contPontos, 500);
+setInterval(contPontos, 700);
 function pontuacao() {
     pontos++;
     console.log('ganhou ponto')
