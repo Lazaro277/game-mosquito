@@ -23,10 +23,23 @@ function gerarPosicaoAleatoria() {
     mosca.style.left = `${randomX}px`;
     mosca.style.top = `${randomY}px`;
 
+    // Cria tamanhos aleatórios para o mosquito
     var min = 50;
     var max = 90;
     const randomPx = Math.random() * (max - min) + min;
     mosca.style.width = `${randomPx}px`;
+
+    var lado = Math.floor(Math.random() * 2);
+    console.log(lado)
+    switch (lado) {
+        case 0:
+            mosca.className = 'ladoA'
+            break
+        case 1:
+            mosca.className = 'ladoB'
+            break
+    }
+
 }
 
 var coracao1 = document.getElementById('coracao1')
@@ -37,6 +50,8 @@ var contPontos = function contarPontos() {
     gerarPosicaoAleatoria();
     pontos--;
     console.log('perdeu ponto');
+
+    // Remove coração a cada ponto perdido
     if (pontos === 2) {
         coracao1.src = 'img/coracao_vazio.png'
     } else if (pontos === 1) {

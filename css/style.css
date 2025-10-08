@@ -37,6 +37,14 @@ a {
     position: absolute;
 }
 
+.ladoA {
+    transform: scaleX(1);
+}
+
+.ladoB {
+    transform: scaleX(-1);
+}
+
 
 
 @media (max-width: 576px) {
