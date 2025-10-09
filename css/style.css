@@ -45,8 +45,6 @@ a {
     transform: scaleX(-1);
 }
 
-
-
 @media (max-width: 576px) {
 
     #game {
