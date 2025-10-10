@@ -1,19 +1,21 @@
+
 var normal = document.getElementById('normal')
 var dificil = document.getElementById('dificil')
 var chuckNorris = document.getElementById('chuckNorris')
 var iniciarJogo = document.getElementById('iniciarJogo')
-var cliqueAnterior = 'naoSelecionado';
-var contagem;
-var tempoMosca;
 var mosca = document.getElementById('imagemMosca');
 var container = document.getElementById('jogo');
 var coracao1 = document.getElementById('coracao1')
 var coracao2 = document.getElementById('coracao2')
 var coracao3 = document.getElementById('coracao3')
+var cliqueAnterior = 'naoSelecionado';
 var pontos = 3
+var contagem;
+var tempoMosca;
 var min;
 var max;
-
+var nivel;
+var nivelSalvo;
 var contPontos = function contarPontos() {
     gerarPosicaoAleatoria();
     pontos--;
@@ -34,7 +36,13 @@ var contPontos = function contarPontos() {
     }
 }
 
+window.onload = function () {
+    nivelSalvo = localStorage.getItem('nivel');
+}
+
 function gerarPosicaoAleatoria() {
+    document.getElementById('cliqueMosca').className = 'd-block'
+
     // Obtém as dimensões atuais do contêiner
     const containerWidth = container.offsetWidth;
     const containerHeight = container.offsetHeight;
@@ -76,12 +84,14 @@ function gerarPosicaoAleatoria() {
 
 function pontuacao() {
     pontos++;
+    document.getElementById('cliqueMosca').className = 'd-none'
     console.log('ganhou ponto')
 }
 
 function jogar() {
-    var nivel = window.location.search
+    nivel = window.location.search
     nivel = nivel.replace('?', '')
+    localStorage.setItem('nivel', nivel);
 
     if (nivel === 'normal') {
         contagem = 20
@@ -95,7 +105,7 @@ function jogar() {
         max = 80
     } else {
         contagem = 10
-        tempoMosca = 700
+        tempoMosca = 750
         min = 30
         max = 70
     }
@@ -111,6 +121,7 @@ function jogar() {
             window.location.href = 'vitoria.html'
         }
     }, 1000)
+
 }
 
 function selecionaNivel(nivel) {
@@ -121,7 +132,6 @@ function selecionaNivel(nivel) {
     if (nivel === 'normal') {
         console.log('nivel normal')
         normal.style.border = '5px solid black'
-        console.log(contagem)
     } else if (nivel === 'dificil') {
         console.log('nivel dificil')
         dificil.style.border = '5px solid black'
