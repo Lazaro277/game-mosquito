@@ -14,11 +14,11 @@ Você pode jogar diretamente pelo navegador através do GitHub Pages:
 
 <!-- Adicione aqui uma imagem ou GIF da tela inicial -->
 
-![Tela inicial do Mata Mosquito](https://github.com/Lazaro277/game-mosquito/blob/main/img/Captura%20de%20tela%201.png?raw=true)
+![Tela inicial do Mata Mosquito](img/readme/img-1)
 
 <!-- Adicione aqui uma imagem ou GIF da partida -->
 
-![Partida do Mata Mosquito](https://github.com/Lazaro277/game-mosquito/blob/main/img/Captura%20de%20tela%202.png?raw=true)
+![Partida do Mata Mosquito](img/readme/img-2)
 
 ## 🕹️ Como funciona
 
