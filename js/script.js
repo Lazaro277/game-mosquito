@@ -7,6 +7,8 @@ const container = document.getElementById('jogo');
 const coracao1 = document.getElementById('coracao1')
 const coracao2 = document.getElementById('coracao2')
 const coracao3 = document.getElementById('coracao3')
+const cliqueMosca = document.getElementById('cliqueMosca')
+const contagemRegressiva = document.getElementById('contagemRegressiva')
 
 let cliqueAnterior = 'naoSelecionado';
 let vidas = 3
@@ -20,11 +22,11 @@ let intervaloMosca;
 let intervaloContagem;
 
 
-let contPontos = function contarPontos() {
+function contarPontos() {
     gerarPosicaoAleatoria();
     vidas--;
 
-    // Remove coração a cada ponto perdido
+    // Remove coração a cada vida perdida
     if (vidas === 2) {
         coracao1.src = 'img/coracao_vazio.png'
     } else if (vidas === 1) {
@@ -46,7 +48,7 @@ window.onload = function () {
 }
 
 function gerarPosicaoAleatoria() {
-    document.getElementById('cliqueMosca').className = 'd-block'
+    cliqueMosca.className = 'd-block'
 
     // Cria tamanhos aleatórios para o mosquito
     const randomPx = Math.random() * (max - min) + min;
@@ -74,7 +76,7 @@ function gerarPosicaoAleatoria() {
     mosca.style.top = `${randomY}px`;
 
     // Faz com que a imagem aparece de lados aleatórios
-    var lado = Math.floor(Math.random() * 2);
+    const lado = Math.floor(Math.random() * 2);
     switch (lado) {
         case 0:
             mosca.className = 'ladoA'
@@ -88,13 +90,12 @@ function gerarPosicaoAleatoria() {
 
 function pontuacao() {
     vidas++;
-    document.getElementById('cliqueMosca').className = 'd-none'
+    cliqueMosca.className = 'd-none'
 }
 
 function jogar() {
     nivel = window.location.search
     nivel = nivel.replace('?', '')
-    localStorage.setItem('nivel', nivel);
 
     if (nivel === 'normal') {
         document.title = 'Normal'
@@ -108,7 +109,7 @@ function jogar() {
         tempoMosca = 1000
         min = 40
         max = 80
-    } else if (nivel == 'chuckNorris') {
+    } else if (nivel === 'chuckNorris') {
         document.title = 'Chuck Norris'
         contagem = 10
         tempoMosca = 750
@@ -119,7 +120,9 @@ function jogar() {
         return
     }
 
-    document.getElementById('contagemRegressiva').innerHTML = contagem
+    localStorage.setItem('nivel', nivel);
+
+    contagemRegressiva.textContent = contagem
 
     gerarPosicaoAleatoria();
 
@@ -127,7 +130,7 @@ function jogar() {
 
     intervaloContagem = setInterval(function contagemRegressiva() {
         contagem--
-        document.getElementById('contagemRegressiva').innerHTML = contagem
+        contagemRegressiva.textContent = contagem
         if (contagem === 0) {
             clearInterval(intervaloMosca)
             clearInterval(intervaloContagem)
