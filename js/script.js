@@ -1,37 +1,42 @@
 
-var normal = document.getElementById('normal')
-var dificil = document.getElementById('dificil')
-var chuckNorris = document.getElementById('chuckNorris')
-var iniciarJogo = document.getElementById('iniciarJogo')
-var mosca = document.getElementById('imagemMosca');
-var container = document.getElementById('jogo');
-var coracao1 = document.getElementById('coracao1')
-var coracao2 = document.getElementById('coracao2')
-var coracao3 = document.getElementById('coracao3')
-var cliqueAnterior = 'naoSelecionado';
-var pontos = 3
-var contagem;
-var tempoMosca;
-var min;
-var max;
-var nivel;
-var nivelSalvo;
-var contPontos = function contarPontos() {
+const normal = document.getElementById('normal')
+const dificil = document.getElementById('dificil')
+const chuckNorris = document.getElementById('chuckNorris')
+const mosca = document.getElementById('imagemMosca');
+const container = document.getElementById('jogo');
+const coracao1 = document.getElementById('coracao1')
+const coracao2 = document.getElementById('coracao2')
+const coracao3 = document.getElementById('coracao3')
+
+let cliqueAnterior = 'naoSelecionado';
+let vidas = 3
+let contagem;
+let tempoMosca;
+let min;
+let max;
+let nivel;
+let nivelSalvo;
+let intervaloMosca;
+let intervaloContagem;
+
+
+let contPontos = function contarPontos() {
     gerarPosicaoAleatoria();
-    pontos--;
-    console.log('perdeu ponto');
+    vidas--;
 
     // Remove coração a cada ponto perdido
-    if (pontos === 2) {
+    if (vidas === 2) {
         coracao1.src = 'img/coracao_vazio.png'
-    } else if (pontos === 1) {
+    } else if (vidas === 1) {
         coracao1.src = 'img/coracao_vazio.png'
         coracao2.src = 'img/coracao_vazio.png'
-    } else if (pontos === 0) {
+    } else if (vidas === 0) {
         coracao1.src = 'img/coracao_vazio.png'
         coracao2.src = 'img/coracao_vazio.png'
         coracao3.src = 'img/coracao_vazio.png'
-    } else if (pontos === -1) {
+    } else if (vidas === -1) {
+        clearInterval(intervaloMosca)
+        clearInterval(intervaloContagem)
         window.location.href = "game_over.html"
     }
 }
@@ -42,6 +47,10 @@ window.onload = function () {
 
 function gerarPosicaoAleatoria() {
     document.getElementById('cliqueMosca').className = 'd-block'
+
+    // Cria tamanhos aleatórios para o mosquito
+    const randomPx = Math.random() * (max - min) + min;
+    mosca.style.width = `${randomPx}px`;
 
     // Obtém as dimensões atuais do contêiner
     const containerWidth = container.offsetWidth;
@@ -64,13 +73,8 @@ function gerarPosicaoAleatoria() {
     mosca.style.left = `${randomX}px`;
     mosca.style.top = `${randomY}px`;
 
-    // Cria tamanhos aleatórios para o mosquito
-    const randomPx = Math.random() * (max - min) + min;
-    mosca.style.width = `${randomPx}px`;
-
     // Faz com que a imagem aparece de lados aleatórios
     var lado = Math.floor(Math.random() * 2);
-    console.log(lado)
     switch (lado) {
         case 0:
             mosca.className = 'ladoA'
@@ -83,9 +87,8 @@ function gerarPosicaoAleatoria() {
 }
 
 function pontuacao() {
-    pontos++;
+    vidas++;
     document.getElementById('cliqueMosca').className = 'd-none'
-    console.log('ganhou ponto')
 }
 
 function jogar() {
@@ -94,34 +97,52 @@ function jogar() {
     localStorage.setItem('nivel', nivel);
 
     if (nivel === 'normal') {
+        document.title = 'Normal'
         contagem = 20
         tempoMosca = 1500
         min = 50
         max = 90
     } else if (nivel === 'dificil') {
+        document.title = 'Difícil'
         contagem = 15
         tempoMosca = 1000
         min = 40
         max = 80
-    } else {
+    } else if (nivel == 'chuckNorris') {
+        document.title = 'Chuck Norris'
         contagem = 10
         tempoMosca = 750
         min = 30
         max = 70
+    } else {
+        window.location.href = 'index.html'
+        return
     }
 
     document.getElementById('contagemRegressiva').innerHTML = contagem
 
-    setInterval(contPontos, tempoMosca);
+    gerarPosicaoAleatoria();
 
-    setInterval(function contagemRegressiva() {
+    intervaloMosca = setInterval(contPontos, tempoMosca);
+
+    intervaloContagem = setInterval(function contagemRegressiva() {
         contagem--
         document.getElementById('contagemRegressiva').innerHTML = contagem
         if (contagem === 0) {
+            clearInterval(intervaloMosca)
+            clearInterval(intervaloContagem)
             window.location.href = 'vitoria.html'
         }
     }, 1000)
 
+}
+
+function reiniciarJogo() {
+    if (nivelSalvo) {
+        window.location.href = 'jogo.html?' + nivelSalvo
+    } else {
+        window.location.href = 'index.html'
+    }
 }
 
 function selecionaNivel(nivel) {
@@ -130,13 +151,10 @@ function selecionaNivel(nivel) {
     chuckNorris.style.border = '0px solid black'
     document.querySelector('.nivelNaoSelecionado').classList.add('d-none')
     if (nivel === 'normal') {
-        console.log('nivel normal')
         normal.style.border = '5px solid black'
     } else if (nivel === 'dificil') {
-        console.log('nivel dificil')
         dificil.style.border = '5px solid black'
     } else if (nivel === 'chuckNorris') {
-        console.log('nivel chuckNorris')
         chuckNorris.style.border = '5px solid black'
     } else {
         if (cliqueAnterior === 'naoSelecionado') {

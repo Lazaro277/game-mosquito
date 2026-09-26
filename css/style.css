@@ -22,10 +22,6 @@ a {
 }
 
 
-#nivelJogo {
-    width: 250px;
-}
-
 #jogo {
     height: 92vh;
     width: 100%;
@@ -47,15 +43,10 @@ a {
 
 @media (max-width: 576px) {
 
-    #game {
-        width: 400px;
-    }
-
-    #imgvitoria {
-        width: 400px;
-    }
-
+    #game,
+    #imgvitoria,
     #imgGameOver {
-        width: 400px;
+        width: 90%;
+        height: auto;
     }
 }
