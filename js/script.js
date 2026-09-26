@@ -8,7 +8,7 @@ const coracao1 = document.getElementById('coracao1')
 const coracao2 = document.getElementById('coracao2')
 const coracao3 = document.getElementById('coracao3')
 const cliqueMosca = document.getElementById('cliqueMosca')
-const contagemRegressiva = document.getElementById('contagemRegressiva')
+const contagemRegressivaTempo = document.getElementById('contagemRegressiva')
 
 let cliqueAnterior = 'naoSelecionado';
 let vidas = 3
@@ -122,15 +122,15 @@ function jogar() {
 
     localStorage.setItem('nivel', nivel);
 
-    contagemRegressiva.textContent = contagem
+    contagemRegressivaTempo.textContent = contagem
 
     gerarPosicaoAleatoria();
 
-    intervaloMosca = setInterval(contPontos, tempoMosca);
+    intervaloMosca = setInterval(contarPontos, tempoMosca);
 
     intervaloContagem = setInterval(function contagemRegressiva() {
         contagem--
-        contagemRegressiva.textContent = contagem
+        contagemRegressivaTempo.textContent = contagem
         if (contagem === 0) {
             clearInterval(intervaloMosca)
             clearInterval(intervaloContagem)
