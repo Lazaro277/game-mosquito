@@ -8,7 +8,7 @@ O jogo possui três níveis de dificuldade, que alteram o tempo da partida, a ve
 
 Você pode jogar diretamente pelo navegador através do GitHub Pages:
 
-**[▶️ Jogar Mata Mosquito](http://portfoliolazaro.me/game-mosquito/)**
+**[▶️ Jogar Mata Mosquito](http://lazarom.dev/game-mosquito/)**
 
 ## 📸 Demonstração
 
